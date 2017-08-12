@@ -17,7 +17,7 @@ public class Practica1_201602598 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        LlenarMatriz_201602598 p=new LlenarMatriz_201602598(5,5);
+        LlenarMatriz_201602598 p=new LlenarMatriz_201602598(5,5,4);
         p.randomMatriz();
     }
     
