@@ -134,8 +134,40 @@ public class LlenarMatriz_201602598 {
     }
     
     public void impMatrizusuario(int f,int c){
-        int k=matrizcontrol[f][c];    
-        matrizusuario[f][c]=Integer.toString(k);
+        int k;
+        if(matrizcontrol[f][c]>=0){
+            k=matrizcontrol[f][c];
+            if(matrizusuario[f][c]==Integer.toString(k)){
+                System.out.println("Ya selecciono esta posicion");
+            }else{
+                matrizusuario[f][c]=Integer.toString(k);
+            }
+            
+        }else{
+            matrizusuario[f][c]="*";
+        }    
+        
+        if(matrizcontrol[f-1][c]>=0 && matrizcontrol[f][c]>=0){
+            k=matrizcontrol[f-1][c];
+            matrizusuario[f-1][c]=Integer.toString(k);
+        }
+        
+        if(matrizcontrol[f+1][c]>=0 && matrizcontrol[f][c]>=0){
+        k=matrizcontrol[f+1][c];
+        matrizusuario[f+1][c]=Integer.toString(k);
+       }
+       
+        if(matrizcontrol[f][c-1]>=0 && matrizcontrol[f][c]>=0){
+        k=matrizcontrol[f][c-1];
+        matrizusuario[f][c-1]=Integer.toString(k);
+            
+        }
+        
+        if(matrizcontrol[f][c+1]>=0 && matrizcontrol[f][c]>=0){
+        k=matrizcontrol[f][c+1];
+        matrizusuario[f][c+1]=Integer.toString(k);
+            
+        }
         
             for(int i=1;i<fila-1;i++){
                    System.out.println();
@@ -144,6 +176,16 @@ public class LlenarMatriz_201602598 {
                        //System.out.printf("  [%d]  ",matrizcontrol[i][j]);
                    }//forj
                }//fori
+            
+            if(matrizcontrol[f][c]<0){
+                System.out.println();
+                System.out.println("PERDISTE");
+                System.out.println("GAME OVER");
+            }else{
+                System.out.println();
+            voltear();
+            }
+            
     }
    
 
