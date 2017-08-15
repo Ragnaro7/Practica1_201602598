@@ -112,44 +112,60 @@ public class LlenarMatriz_201602598 {
     public void voltear(){
         Scanner sc=new Scanner(System.in);
         Scanner sc2=new Scanner(System.in);
-        System.out.println("Ingrese una fila");
+        System.out.println("\nIngrese una fila");
         int vfila=sc.nextInt();
-        System.out.println("Ingrese una columna");
+        if(vfila>fila-2 || vfila<=0){
+            System.out.printf("%n%s%n","Fila no valida, intente de nuevo");
+            voltear();
+        }
+        System.out.println("\nIngrese una columna");
         int vcolumna=sc.nextInt();
+        if(vcolumna>columna-2 || vcolumna<=0){
+            System.out.printf("%n%s%n","Columna no valida\nPara evitar errores ingrese nuevamente "
+                    + "AMBOS datos");
+            voltear();
+        }
         System.out.println("Esta seguro? Y/N");
         String seguro=sc2.nextLine();
         if(seguro.equalsIgnoreCase("y")){
-            impMatrizusuario(vfila,vcolumna);
+            //impMatrizusuario(vfila,vcolumna);
+            verificarvolter(vfila,vcolumna);
         }else if(seguro.equalsIgnoreCase("n")){
          impMatriz();   
-        }else {System.out.println("Opcion no valida, intente una vez mas");
+        }else {System.out.println("Comando no valido, intente de nuevo");
         System.out.println();    
         voltear();
         }
         
     }//voletar
     
-    public void verificarvolter(){
-        
+    public void verificarvolter(int f,int c){
+        int k;
+        k=matrizcontrol[f][c];
+        if(matrizusuario[f][c].equals(Integer.toString(k))){
+                System.out.printf("%n%s%n","La casilla ya se muestra en pantalla,ingrese otra.");
+                impMatrizusuario(f,c,true);
+            }else{
+                    
+        impMatrizusuario(f,c,false);
+        }
     }
     
-    public void impMatrizusuario(int f,int c){
-        int k;
+    public void impMatrizusuario(int f,int c,boolean a){
+        if(a==false){
+            
+        int k;//desde aqui pendejo solo borra el if
         if(matrizcontrol[f][c]>=0){
             k=matrizcontrol[f][c];
-            if(matrizusuario[f][c]==Integer.toString(k)){
-                System.out.println("Ya selecciono esta posicion");
-            }else{
-                matrizusuario[f][c]=Integer.toString(k);
-            }
-            
+            matrizusuario[f][c]=Integer.toString(k);
         }else{
             matrizusuario[f][c]="*";
         }    
         
         if(matrizcontrol[f-1][c]>=0 && matrizcontrol[f][c]>=0){
             k=matrizcontrol[f-1][c];
-            matrizusuario[f-1][c]=Integer.toString(k);
+             matrizusuario[f-1][c]=Integer.toString(k);
+            
         }
         
         if(matrizcontrol[f+1][c]>=0 && matrizcontrol[f][c]>=0){
@@ -169,6 +185,7 @@ public class LlenarMatriz_201602598 {
             
         }
         
+        }//if false
             for(int i=1;i<fila-1;i++){
                    System.out.println();
                    for(int j=1;j<columna-1;j++){
@@ -178,9 +195,9 @@ public class LlenarMatriz_201602598 {
                }//fori
             
             if(matrizcontrol[f][c]<0){
-                System.out.println();
-                System.out.println("PERDISTE");
-                System.out.println("GAME OVER");
+                System.out.printf("%n%s%n%s%n","           Perdiste","          GAME OVER");
+                System.out.println("Solucion:\n");
+                //Aca metodo para imprimir solucion
             }else{
                 System.out.println();
             voltear();
