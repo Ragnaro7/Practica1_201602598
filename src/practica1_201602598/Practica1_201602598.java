@@ -17,8 +17,10 @@ public class Practica1_201602598 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        LlenarMatriz_201602598 p=new LlenarMatriz_201602598(6,6,4);
-        p.randomMatriz();
+        /*LlenarMatriz_201602598 p=new LlenarMatriz_201602598(6,6,4);
+        p.randomMatriz();*/
+        Menu_201602598 p=new Menu_201602598();
+        p.pantallaInicio();
     }
     
 }
