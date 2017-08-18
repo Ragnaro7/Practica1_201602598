@@ -17,8 +17,8 @@ public class LlenarMatriz_201602598 {
     private String matrizusuario[][];
     private int matrizcontrol[][];
     private int filar,columnar;
-    
-    
+    private int ganar;
+    private boolean condganar;
     public LlenarMatriz_201602598(int fila, int columna,int minas){
         
         this.fila=fila;
@@ -41,10 +41,53 @@ public class LlenarMatriz_201602598 {
         
     }*/
     
+    public void reiniciarnivel(){
+        
+       System.out.println("\nReiniciando tablero");
+               Menu_201602598 wq=new Menu_201602598();
+               if(matrizcontrol.length==6){
+                   System.out.println("\nUd. Ha reiniciado el tablero");
+                   wq.principiante(6, 6, 4, "Principiante");
+               }else if(matrizcontrol.length==8){
+                   System.out.println("\nUd. Ha reiniciado el tablero");
+                    wq.principiante(8, 8, 8, "Intermedio");
+               }
+               else{
+                   System.out.println("\nUd. Ha reiniciado el tablero");
+                    wq.principiante(10, 10, 12, "Avanzado");
+               }
+               randomMatriz();
+        
+    }
+    
+    public void ganar(){
+        condganar=false;
+        
+          for(int i=1;i<fila-1;i++){
+            for(int j=1;j<columna-1;j++){
+                
+                if(matrizcontrol[i][j]>=0){
+                  if(!(matrizusuario[i][j].equalsIgnoreCase(Integer.toString(matrizcontrol[i][j])))){
+                      condganar=true;
+                  }
+              }  
+            }//for j
+        }//for i*/
+          
+        if(condganar==false){
+            System.out.println("    FELICIDADES\n   GANASTE\n");
+            reiniciarJuego();
+        }else{
+            
+        voltear();
+        
+        }
+    }
+    
     public void usuariosx(){
         
-         for(int i=1;i<fila;i++){
-            for(int j=1;j<columna;j++){
+         for(int i=1;i<fila-1;i++){
+            for(int j=1;j<columna-1;j++){
                 matrizusuario[i][j]="x";
             }//for j
         }//for i*/
@@ -92,6 +135,7 @@ public class LlenarMatriz_201602598 {
     }//igualarMatriz
     
     public void sol(){
+        System.out.println("    <Solucion del tablero.>");
         String matrizusuario2[][]=new String [fila][columna];
         
         for(int i=1;i<fila-1;i++){
@@ -113,7 +157,7 @@ public class LlenarMatriz_201602598 {
                 //System.out.printf("  [%d]  ",matrizcontrol[i][j]);
             }//forj
         }//fori
-          System.out.println("\n\n");
+          System.out.println("\n");
           voltear();
     }
     
@@ -143,14 +187,15 @@ public class LlenarMatriz_201602598 {
     public void reiniciarJuego(){
         
            Scanner scsol=new Scanner(System.in);
-         System.out.printf("%n%s%n","¿Desea reiniciar el juego? (Y/N)");
+         System.out.printf("%n%s%n","¿Desea volver al menu principal (Y/N)");
          String fin=scsol.nextLine();
          if(fin.equalsIgnoreCase("y")){
              System.out.println();
              Menu_201602598 men=new Menu_201602598();
              men.pantallaInicio();
          }else if(fin.equalsIgnoreCase("n")){
-             System.out.println("\nSaliendo del juego\n");
+             System.out.println("\nSaliendo del juego.");
+            System.exit(0);
          }else{
              System.out.println("Opcion no valida, intente nuevamente");
              reiniciarJuego();
@@ -196,15 +241,16 @@ public class LlenarMatriz_201602598 {
 
 
     public void voltear(){
-        Menu_201602598 menu=new Menu_201602598();
+        //Menu_201602598 menu=new Menu_201602598();
         Scanner sc3=new Scanner(System.in);
+        Scanner sc=new Scanner(System.in);
+        Scanner sc2=new Scanner(System.in);
+        
         System.out.println("\n---------------------------\nVoltear: v\nReiniciar: r\nSalir: s\nIngrese "
                 + "una opcion");
         String op3=sc3.nextLine();
         if(op3.equalsIgnoreCase("v")){
             
-        Scanner sc=new Scanner(System.in);
-        Scanner sc2=new Scanner(System.in);
         System.out.println("\n  \nIngrese una fila");
         int vfila=sc.nextInt();
         if(vfila>fila-2 || vfila<=0){
@@ -231,10 +277,10 @@ public class LlenarMatriz_201602598 {
         }
         
         }else if(op3.equalsIgnoreCase("r")){
-            menu.menuPrincipal();
+            reiniciarnivel();
         }else if(op3.equalsIgnoreCase("s")){
-            Menu_201602598 sa=new Menu_201602598();
-            sa.nulo();
+            System.out.println("\nSaliendo del juego.");
+            System.exit(0);
         }else if(op3.equalsIgnoreCase("sol")){
             sol();
         }
@@ -245,6 +291,9 @@ public class LlenarMatriz_201602598 {
         }
         
     }//voletar
+    public void s(){
+        System.out.println("\nSaliendo del juego.");
+    }
     
     public void verificarvolter(int f,int c){
         int k;
@@ -304,12 +353,13 @@ public class LlenarMatriz_201602598 {
             
             if(matrizcontrol[f][c]<0){
                 System.out.printf("%n%s%n%s%n","           Perdiste","          GAME OVER");
-                System.out.println("    Solucion:\n");
+                System.out.println("        Solucion:");
                 solucion();
                 //Aca metodo para imprimir solucion
             }else{
                 System.out.println();
-            voltear();
+                
+            ganar();
             }
             
     }

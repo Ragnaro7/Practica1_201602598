@@ -19,6 +19,9 @@ public class Menu_201602598 {
     public void pantallaInicio(){
         System.out.printf("%s%n%s%n%s%n%s%n","Hector Mendizabal","201602598",""
                 + "IPC1 A PRACTICA 1","BUSCAMINAS");
+        String start;
+        Scanner scp=new Scanner(System.in);
+        start=scp.nextLine();
         menuPrincipal();
     }
     
@@ -70,6 +73,11 @@ public class Menu_201602598 {
                 
             case 4:
                 nulo();
+                break;
+                
+            default:
+                System.out.println("\nComando no valido, intente de nuevo.");
+                swiMenuPrincipal();
                 break;
         }//switch
     }//swiMenuPrincipal
