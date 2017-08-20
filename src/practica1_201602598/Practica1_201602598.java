@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package practica1_201602598;
 
 /**
@@ -15,10 +11,7 @@ public class Practica1_201602598 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        
-        /*LlenarMatriz_201602598 p=new LlenarMatriz_201602598(6,6,4);
-        p.randomMatriz();*/
+       
         Menu_201602598 p=new Menu_201602598();
         p.pantallaInicio();
     }

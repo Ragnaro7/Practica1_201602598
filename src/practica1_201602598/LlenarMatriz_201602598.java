@@ -192,7 +192,7 @@ public class LlenarMatriz_201602598 {
          if(fin.equalsIgnoreCase("y")){
              System.out.println();
              Menu_201602598 men=new Menu_201602598();
-             men.pantallaInicio();
+             men.menuPrincipal();
          }else if(fin.equalsIgnoreCase("n")){
              System.out.println("\nSaliendo del juego.");
             System.exit(0);
@@ -247,11 +247,28 @@ public class LlenarMatriz_201602598 {
         Scanner sc2=new Scanner(System.in);
         
         System.out.println("\n---------------------------\nVoltear: v\nReiniciar: r\nSalir: s\nIngrese "
-                + "una opcion");
+                + "una opcion (v/r/s)");
         String op3=sc3.nextLine();
         if(op3.equalsIgnoreCase("v")){
             
-        System.out.println("\n  \nIngrese una fila");
+            System.out.println("Ingrese una fila y columna. Ej. 1,2");
+            String valores=sc.nextLine();
+            String coordenadas[]=valores.split(",");
+            if(coordenadas.length!=2){
+                System.out.println("Coordenadas no validas, intente de nuevo.");
+                voltear();
+            }
+            int vfila=Integer.parseInt(coordenadas[0]);
+             if(vfila>fila-2 || vfila<=0){
+            System.out.printf("%n%s%n","Coordenadas no validas, intente de nuevo.");
+            voltear();
+        }
+             int vcolumna=Integer.parseInt(coordenadas[1]);
+             if(vcolumna>columna-2 || vcolumna<=0){
+            System.out.printf("%n%s%n","Coordenadas no validas, intente de nuevo.");
+            voltear();
+        }
+        /*System.out.println("\n  \nIngrese una fila");
         int vfila=sc.nextInt();
         if(vfila>fila-2 || vfila<=0){
             System.out.printf("%n%s%n","Fila no valida, intente de nuevo");
@@ -263,7 +280,7 @@ public class LlenarMatriz_201602598 {
             System.out.printf("%n%s%n","Columna no valida\nPara evitar errores ingrese nuevamente "
                     + "AMBOS datos");
             voltear();
-        }
+        }*/
         System.out.println("Esta seguro? Y/N");
         String seguro=sc2.nextLine();
         if(seguro.equalsIgnoreCase("y")){
@@ -279,8 +296,9 @@ public class LlenarMatriz_201602598 {
         }else if(op3.equalsIgnoreCase("r")){
             reiniciarnivel();
         }else if(op3.equalsIgnoreCase("s")){
-            System.out.println("\nSaliendo del juego.");
-            System.exit(0);
+            System.out.println("\nVolviendo al menu principal");
+            Menu_201602598 zxcv=new Menu_201602598();
+            zxcv.menuPrincipal();
         }else if(op3.equalsIgnoreCase("sol")){
             sol();
         }
